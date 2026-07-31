@@ -232,14 +232,60 @@ select:focus-visible {
 }
 
 .hero {
-  padding: 84px 0 72px;
+  padding: 62px 0 74px;
 }
 
-.hero-grid {
-  display: grid;
-  align-items: end;
-  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.72fr);
-  gap: 9vw;
+.brand-hero-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-hero-logo {
+  display: block;
+  width: clamp(122px, 13vw, 168px);
+  height: auto;
+  margin-bottom: 44px;
+}
+
+.brand-hero-roof {
+  position: absolute;
+  top: 28px;
+  right: -1%;
+  width: 48%;
+  height: 130px;
+  color: #d7dce0;
+  pointer-events: none;
+}
+
+.brand-hero-roof::before,
+.brand-hero-roof::after {
+  position: absolute;
+  top: 62px;
+  width: 54%;
+  border-top: 1px solid currentColor;
+  content: "";
+}
+
+.brand-hero-roof::before {
+  left: 0;
+  transform: rotate(-21deg);
+  transform-origin: right center;
+}
+
+.brand-hero-roof::after {
+  right: 8px;
+  transform: rotate(21deg);
+  transform-origin: left center;
+}
+
+.brand-hero-roof span {
+  position: absolute;
+  top: 59px;
+  right: 0;
+  width: 9px;
+  height: 19px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
 }
 
 .eyebrow {
@@ -264,20 +310,33 @@ h3 {
   letter-spacing: -0.045em;
 }
 
-.hero h1 {
-  max-width: 900px;
-  margin-bottom: 28px;
-  font-size: clamp(48px, 6.5vw, 92px);
-  font-weight: 520;
-  line-height: 0.99;
+.brand-hero h1 {
+  position: relative;
+  max-width: 940px;
+  margin-bottom: 18px;
+  font-size: clamp(48px, 6.2vw, 86px);
+  font-weight: 650;
+  line-height: 0.98;
 }
 
-.hero-lead {
-  max-width: 690px;
-  margin-bottom: 34px;
+.brand-hero-name {
+  max-width: 940px;
+  border-bottom: 1px solid #9bcff0;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.brand-hero-lead {
+  max-width: 650px;
+  margin-bottom: 30px;
   color: var(--muted);
-  font-size: clamp(18px, 1.7vw, 22px);
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .button-row {
@@ -286,13 +345,6 @@ h3 {
   gap: 12px;
 }
 
-.hero-panel {
-  border-top: 3px solid var(--blue);
-  background: var(--soft);
-  padding: 30px;
-}
-
-.hero-panel-label,
 .footer-label,
 .resource-audience {
   color: var(--muted);
@@ -300,18 +352,6 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.hero-panel ul {
-  margin: 22px 0 30px;
-  padding: 0;
-  list-style: none;
-}
-
-.hero-panel li {
-  border-bottom: 1px solid var(--line);
-  padding: 9px 0;
-  font-size: 15px;
 }
 
 .arrow-link {
@@ -479,6 +519,43 @@ h3 {
 .home-links-section .audience-card p {
   font-size: 15px;
   line-height: 1.6;
+}
+
+.trade-me-section {
+  padding-top: 0;
+}
+
+.trade-me-handoff {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 56px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 48px;
+}
+
+.trade-me-handoff > div {
+  max-width: 720px;
+}
+
+.trade-me-handoff h2 {
+  margin-bottom: 14px;
+}
+
+.trade-me-handoff p:last-child {
+  margin-bottom: 0;
+  color: #c8ccd0;
+}
+
+.trade-me-handoff .eyebrow {
+  color: #a7ddff;
+}
+
+.trade-me-handoff .button {
+  flex: 0 0 auto;
+  background: var(--white);
+  color: var(--ink);
 }
 
 .process-grid {
@@ -1025,13 +1102,8 @@ h3 {
     display: block;
   }
 
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 54px;
-  }
-
-  .hero-panel {
-    max-width: 600px;
+  .brand-hero-roof {
+    width: 42%;
   }
 
   .service-grid-four {
@@ -1064,7 +1136,7 @@ h3 {
     padding: 64px 0 54px;
   }
 
-  .hero h1,
+  .brand-hero h1,
   .page-intro h1 {
     font-size: clamp(42px, 12vw, 66px);
   }
@@ -1113,6 +1185,12 @@ h3 {
     flex-direction: column;
   }
 
+  .trade-me-handoff {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 36px;
+  }
+
   .page-intro {
     padding: 72px 0 68px;
   }
@@ -1137,9 +1215,24 @@ h3 {
     width: 100%;
   }
 
-  .hero-panel,
   .inquiry-form {
     padding: 24px;
+  }
+
+  .brand-hero-logo {
+    margin-bottom: 34px;
+  }
+
+  .brand-hero-roof {
+    display: none;
+  }
+
+  .brand-hero-name {
+    letter-spacing: 0.12em;
+  }
+
+  .trade-me-handoff {
+    padding: 28px;
   }
 
   .form-grid {

@@ -1,5 +1,8 @@
 export type Language = "en" | "zh";
 
+export const tradeMeListingsUrl =
+  "https://www.trademe.co.nz/a/property/office/8184652";
+
 export const resourceGroups = [
   {
     id: "healthy-homes",
@@ -177,4 +180,3 @@ export const servicePillars = [
     },
   },
 ] as const;
-

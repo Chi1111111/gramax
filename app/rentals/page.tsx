@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { RentalsView } from "../_components/PageViews";
 
 export const metadata: Metadata = {
-  title: "Homes For Rent",
+  title: "Current Rental Listings",
   description:
-    "View current Gramax-managed rentals or register for a rental alert.",
+    "Open Gramax Property Management's current residential and commercial listings on Trade Me.",
 };
 
 export default function Page() {

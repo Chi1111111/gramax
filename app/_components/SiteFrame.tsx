@@ -1,14 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Language } from "../_data/content";
+import {
+  tradeMeListingsUrl,
+  type Language,
+} from "../_data/content";
 
 const nav = [
-  { path: "/landlords", en: "Landlords", zh: "房东服务" },
+  {
+    path: tradeMeListingsUrl,
+    en: "Rentals ↗",
+    zh: "可租房源 ↗",
+    external: true,
+  },
+  { path: "/team", en: "Our Team", zh: "团队介绍" },
+  { path: "/landlords", en: "Property Owners", zh: "房东服务" },
   { path: "/tenants", en: "Tenants", zh: "租客服务" },
   { path: "/commercial", en: "Commercial", zh: "商业物业" },
-  { path: "/rentals", en: "For Rent", zh: "出租房源" },
-  { path: "/resources", en: "Resources", zh: "资料中心" },
-  { path: "/about", en: "About", zh: "关于我们" },
 ] as const;
 
 function localized(path: string, lang: Language) {
@@ -61,7 +68,9 @@ export function SiteFrame({
               <Link
                 key={item.path}
                 className={currentPath === item.path ? "active" : undefined}
-                href={localized(item.path, lang)}
+                href={"external" in item ? item.path : localized(item.path, lang)}
+                target={"external" in item ? "_blank" : undefined}
+                rel={"external" in item ? "noreferrer" : undefined}
               >
                 {item[lang]}
               </Link>
@@ -81,7 +90,12 @@ export function SiteFrame({
             <summary>{isZh ? "菜单" : "Menu"}</summary>
             <div className="mobile-nav-panel">
               {nav.map((item) => (
-                <Link key={item.path} href={localized(item.path, lang)}>
+                <Link
+                  key={item.path}
+                  href={"external" in item ? item.path : localized(item.path, lang)}
+                  target={"external" in item ? "_blank" : undefined}
+                  rel={"external" in item ? "noreferrer" : undefined}
+                >
                   {item[lang]}
                 </Link>
               ))}
@@ -130,6 +144,9 @@ export function SiteFrame({
             <Link href={localized("/appraisal", lang)}>
               {isZh ? "租金评估" : "Rental appraisal"}
             </Link>
+            <a href={tradeMeListingsUrl} target="_blank" rel="noreferrer">
+              {isZh ? "Trade Me 可租房源 ↗" : "Current rentals on Trade Me ↗"}
+            </a>
           </div>
           <div>
             <p className="footer-label">{isZh ? "帮助" : "Support"}</p>
@@ -139,17 +156,17 @@ export function SiteFrame({
             <Link href={localized("/resources", lang)}>
               {isZh ? "资料与表格" : "Guides & forms"}
             </Link>
-            <Link href={`${localized("/contact", lang)}?topic=portal`}>
-              {isZh ? "Portal 登录协助" : "Portal access support"}
+            <Link href={localized("/team", lang)}>
+              {isZh ? "团队介绍" : "Our team"}
             </Link>
           </div>
           <div>
             <p className="footer-label">{isZh ? "联系" : "Contact"}</p>
-            <p>
-              {isZh
-                ? "新西兰住宅、商业物业租赁与管理"
-                : "Residential and commercial property letting and management in New Zealand"}
-            </p>
+            <a href="tel:+64212468868">021 246 8868</a>
+            <a href="mailto:info@gramaxproperty.co.nz">
+              info@gramaxproperty.co.nz
+            </a>
+            <p>84 Harris Road, East Tāmaki, Auckland 2013</p>
             <Link className="footer-contact" href={localized("/contact", lang)}>
               {isZh ? "发送咨询 →" : "Send an enquiry →"}
             </Link>
@@ -217,4 +234,3 @@ export function ArrowLink({
     </Link>
   );
 }
-

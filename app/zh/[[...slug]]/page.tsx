@@ -9,6 +9,7 @@ const titles: Record<string, string> = {
   commercial: "商业物业管理",
   rentals: "出租房源",
   resources: "资料中心",
+  team: "Gramax 团队",
   about: "关于 Gramax",
   contact: "联系 Gramax",
   appraisal: "免费租金评估",

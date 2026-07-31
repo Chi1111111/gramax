@@ -9,6 +9,7 @@ import {
 } from "./SiteFrame";
 import {
   resourceGroups,
+  tradeMeListingsUrl,
   type Language,
 } from "../_data/content";
 
@@ -101,67 +102,100 @@ const commercialServices = [
 export function HomeView({ lang }: { lang: Language }) {
   return (
     <SiteFrame lang={lang} currentPath="/">
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">
-              {t(
-                lang,
-                "Residential · Commercial · Community",
-                "住宅 · 商业 · 社区服务",
-              )}
-            </p>
-            <h1>
-              {t(
-                lang,
-                "Professional property management, without the noise.",
-                "专业物业管理，清晰、省心、可依赖。",
-              )}
-            </h1>
-            <p className="hero-lead">
-              {t(
-                lang,
-                "Structured tenancy systems, practical compliance support and clear communication for New Zealand property owners and tenants.",
-                "为新西兰房东与租客提供规范的租赁管理、实用的合规支持与清晰沟通。",
-              )}
-            </p>
-            <div className="button-row">
-              <Link className="button" href={path(lang, "/appraisal")}>
-                {t(lang, "Request a free appraisal", "申请免费租金评估")}
-              </Link>
-              <Link className="button button-secondary" href={path(lang, "/landlords")}>
-                {t(lang, "Explore our service", "了解物业管理服务")}
-              </Link>
-            </div>
+      <section className="hero brand-hero">
+        <div className="container brand-hero-shell">
+          <Image
+            className="brand-hero-logo"
+            src={
+              lang === "zh"
+                ? "/brand/gramax-logo-zh.png"
+                : "/brand/gramax-logo-en.png"
+            }
+            alt={t(lang, "Gramax Property Management", "Gramax 贵鑫物业管理")}
+            width={568}
+            height={406}
+            priority
+          />
+          <div className="brand-hero-roof" aria-hidden="true">
+            <span />
           </div>
-          <div className="hero-panel">
-            <p className="hero-panel-label">{t(lang, "What we manage", "我们的服务范围")}</p>
-            <ul>
-              <li>{t(lang, "Residential property", "住宅物业")}</li>
-              <li>{t(lang, "Commercial property", "商业物业")}</li>
-              <li>{t(lang, "Letting & tenancy", "招租与租约管理")}</li>
-              <li>{t(lang, "Compliance & inspections", "合规与例行检查")}</li>
-              <li>{t(lang, "Maintenance coordination", "维修协调")}</li>
-              <li>{t(lang, "Residential society services", "社区服务管理")}</li>
-            </ul>
-            <ArrowLink href={path(lang, "/contact")}>
-              {t(lang, "Talk to Gramax", "与 Gramax 沟通")}
-            </ArrowLink>
+          <h1>
+            {t(
+              lang,
+              "Professional property management. Clear, compliant, dependable.",
+              "专业物业管理。清晰、合规、可靠。",
+            )}
+          </h1>
+          <p className="brand-hero-name">
+            {t(lang, "Gramax Property Management", "Gramax 贵鑫物业管理")}
+          </p>
+          <p className="brand-hero-lead">
+            {t(
+              lang,
+              "Personal, practical property management for Auckland owners and tenants.",
+              "为奥克兰房东与租客提供务实、细致的物业管理服务。",
+            )}
+          </p>
+          <div className="button-row">
+            <a
+              className="button"
+              href={tradeMeListingsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t(lang, "View current rentals ↗", "查看当前房源 ↗")}
+            </a>
+            <Link className="button button-secondary" href={path(lang, "/team")}>
+              {t(lang, "Meet our team", "认识我们的团队")}
+            </Link>
           </div>
         </div>
       </section>
 
-
       <section className="section home-links-section">
         <div className="container">
           <SectionHeading
-            eyebrow={t(lang, "Choose your path", "按您的需求进入")}
-            title={t(lang, "The right support for each property relationship.", "为不同物业关系提供对应支持。")}
+            eyebrow={t(lang, "Essential pages", "核心入口")}
+            title={t(lang, "Start where you need.", "从您需要的页面开始。")}
           />
           <div className="audience-grid">
-            <article className="audience-card">
+            <article className="audience-card audience-card-dark">
               <span className="card-index">01</span>
-              <h3>{t(lang, "For landlords", "房东服务")}</h3>
+              <h3>{t(lang, "Current rentals", "当前房源")}</h3>
+              <p>
+                {t(
+                  lang,
+                  "See every live Gramax residential and commercial listing on Trade Me.",
+                  "在 Trade Me 查看 Gramax 当前全部住宅及商业房源。",
+                )}
+              </p>
+              <a
+                className="arrow-link"
+                href={tradeMeListingsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t(lang, "Open Trade Me", "打开 Trade Me")}{" "}
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+            <article className="audience-card">
+              <span className="card-index">02</span>
+              <h3>{t(lang, "Our team", "团队介绍")}</h3>
+              <p>
+                {t(
+                  lang,
+                  "Meet the people responsible for the care, communication and follow-through.",
+                  "了解负责物业维护、沟通与持续跟进的 Gramax 团队。",
+                )}
+              </p>
+              <ArrowLink href={path(lang, "/team")}>
+                {t(lang, "Meet Gramax", "认识 Gramax")}
+              </ArrowLink>
+            </article>
+            <article className="audience-card">
+              <span className="card-index">03</span>
+              <h3>{t(lang, "For property owners", "房东服务")}</h3>
               <p>
                 {t(
                   lang,
@@ -170,41 +204,12 @@ export function HomeView({ lang }: { lang: Language }) {
                 )}
               </p>
               <ArrowLink href={path(lang, "/landlords")}>
-                {t(lang, "Landlord services", "查看房东服务")}
-              </ArrowLink>
-            </article>
-            <article className="audience-card">
-              <span className="card-index">02</span>
-              <h3>{t(lang, "For tenants", "租客服务")}</h3>
-              <p>
-                {t(
-                  lang,
-                  "Maintenance support, tenancy guidance, inspections and safety information.",
-                  "维修支持、租约指南、例行检查及居住安全信息。",
-                )}
-              </p>
-              <ArrowLink href={path(lang, "/tenants")}>
-                {t(lang, "Tenant support", "查看租客服务")}
-              </ArrowLink>
-            </article>
-            <article className="audience-card audience-card-dark">
-              <span className="card-index">03</span>
-              <h3>{t(lang, "Commercial property", "商业物业")}</h3>
-              <p>
-                {t(
-                  lang,
-                  "End-to-end leasing, financials, operations, compliance and asset advisory.",
-                  "覆盖租赁、财务、运营、合规及资产管理建议。",
-                )}
-              </p>
-              <ArrowLink href={path(lang, "/commercial")}>
-                {t(lang, "Commercial management", "查看商业物业服务")}
+                {t(lang, "Explore owner services", "查看房东服务")}
               </ArrowLink>
             </article>
           </div>
         </div>
       </section>
-
 
       <section className="final-cta">
         <div className="container final-cta-inner">
@@ -433,34 +438,39 @@ export function RentalsView({ lang }: { lang: Language }) {
   return (
     <SiteFrame lang={lang} currentPath="/rentals">
       <PageIntro
-        eyebrow={t(lang, "For rent", "出租房源")}
-        title={t(lang, "Find a Gramax-managed home.", "寻找由 Gramax 管理的房源。")}
+        eyebrow={t(lang, "Current listings", "当前房源")}
+        title={t(
+          lang,
+          "View every current Gramax listing on Trade Me.",
+          "在 Trade Me 查看 Gramax 的全部当前房源。",
+        )}
         body={t(
           lang,
-          "Available listings are published here when homes are ready for viewing and application.",
-          "当房源开放看房及申请时，我们会在这里发布最新信息。",
+          "Residential and commercial availability is maintained on Gramax’s official Trade Me office page, so prices, viewing details and application information stay current.",
+          "Gramax 的住宅及商业房源统一在官方 Trade Me 门店页面维护，确保租金、看房及申请信息保持最新。",
         )}
       />
-      <section className="section">
-        <div className="container empty-listing">
-          <p className="eyebrow">{t(lang, "Current availability", "当前房源")}</p>
-          <h2>{t(lang, "No public listings are being shown right now.", "目前暂无公开展示的房源。")}</h2>
-          <p>
-            {t(
-              lang,
-              "Register your preferences and we will keep your enquiry ready for a suitable listing.",
-              "登记您的租房需求，我们会在有合适房源时保留并跟进您的咨询。",
-            )}
-          </p>
-        </div>
-      </section>
-      <section className="section section-muted">
-        <div className="container form-layout">
-          <SectionHeading
-            eyebrow={t(lang, "Rental alert", "房源通知")}
-            title={t(lang, "Tell us what you are looking for.", "告诉我们您的租房需求。")}
-          />
-          <InquiryForm kind="rental-alert" lang={lang} />
+      <section className="section trade-me-section">
+        <div className="container trade-me-handoff">
+          <div>
+            <p className="eyebrow">Trade Me Property</p>
+            <h2>{t(lang, "Live listings, in one reliable place.", "实时房源，集中在一个可靠入口。")}</h2>
+            <p>
+              {t(
+                lang,
+                "The link opens the official Gramax Property Management profile in a new tab.",
+                "点击后将在新页面打开 Gramax Property Management 的官方 Trade Me 页面。",
+              )}
+            </p>
+          </div>
+          <a
+            className="button"
+            href={tradeMeListingsUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t(lang, "View listings on Trade Me ↗", "在 Trade Me 查看房源 ↗")}
+          </a>
         </div>
       </section>
     </SiteFrame>
@@ -511,16 +521,16 @@ export function ResourcesView({ lang }: { lang: Language }) {
   );
 }
 
-export function AboutView({ lang }: { lang: Language }) {
+export function TeamView({ lang }: { lang: Language }) {
   return (
-    <SiteFrame lang={lang} currentPath="/about">
+    <SiteFrame lang={lang} currentPath="/team">
       <PageIntro
-        eyebrow={t(lang, "About Gramax", "关于 Gramax")}
-        title={t(lang, "Professional structure. Personal accountability.", "专业体系，负责人亲自把关。")}
+        eyebrow={t(lang, "Our team", "团队介绍")}
+        title={t(lang, "Meet the people behind Gramax.", "认识 Gramax 背后的团队。")}
         body={t(
           lang,
-          "Gramax Property Management Ltd is led by Grace Luo, combining residential property management experience with a practical focus on compliance, risk and long-term value.",
-          "Gramax Property Management Ltd 由 Grace Luo 负责，将住宅物业管理经验与合规、风险控制及长期价值相结合。",
+          "Led by founder and managing director Grace Luo, the Gramax team combines practical property management experience with clear communication, compliance and personal accountability.",
+          "Gramax 团队由创始人兼负责人 Grace Luo 带领，将实际物业管理经验、清晰沟通、合规意识与责任落实相结合。",
         )}
       />
       <section className="section">
@@ -556,7 +566,7 @@ export function AboutView({ lang }: { lang: Language }) {
       <section className="section section-muted">
         <div className="container">
           <SectionHeading
-            eyebrow={t(lang, "What guides our work", "我们的工作原则")}
+            eyebrow={t(lang, "How our team works", "团队工作方式")}
             title={t(lang, "Reliable service is built in the details.", "可靠服务来自每一个细节。")}
           />
           <div className="values-grid">
@@ -695,8 +705,10 @@ export function renderView(slug: string | undefined, lang: Language) {
       return <RentalsView lang={lang} />;
     case "resources":
       return <ResourcesView lang={lang} />;
+    case "team":
+      return <TeamView lang={lang} />;
     case "about":
-      return <AboutView lang={lang} />;
+      return <TeamView lang={lang} />;
     case "contact":
       return <ContactView lang={lang} />;
     case "appraisal":
