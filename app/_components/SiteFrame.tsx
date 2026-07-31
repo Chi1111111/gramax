@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Language } from "../_data/content";
+import { MotionEffects } from "./MotionEffects";
 
 const nav = [
   { path: "/rentals", en: "Rentals", zh: "可租房源" },
@@ -72,6 +73,7 @@ export function SiteFrame({
 
   return (
     <div className="site">
+      <MotionEffects />
       <header className="site-header">
         <div className="container header-inner">
           <Link
