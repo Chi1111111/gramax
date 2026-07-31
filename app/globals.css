@@ -458,6 +458,29 @@ h3 {
   margin-top: auto;
 }
 
+.home-links-section {
+  padding: 76px 0;
+}
+
+.home-links-section .section-heading {
+  margin-bottom: 38px;
+}
+
+.home-links-section .audience-card {
+  min-height: 260px;
+  padding: 28px;
+}
+
+.home-links-section .audience-card h3 {
+  margin: 40px 0 12px;
+  font-size: 25px;
+}
+
+.home-links-section .audience-card p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -9,7 +9,6 @@ import {
 } from "./SiteFrame";
 import {
   resourceGroups,
-  servicePillars,
   type Language,
 } from "../_data/content";
 
@@ -152,24 +151,8 @@ export function HomeView({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      <section className="trust-band">
-        <div className="container trust-grid">
-          <div>
-            <strong>{t(lang, "Residential + commercial", "住宅 + 商业")}</strong>
-            <span>{t(lang, "One clear management approach", "一套清晰的管理体系")}</span>
-          </div>
-          <div>
-            <strong>{t(lang, "Bilingual service", "中英双语服务")}</strong>
-            <span>{t(lang, "Communication without cultural gaps", "减少文化与沟通障碍")}</span>
-          </div>
-          <div>
-            <strong>{t(lang, "Compliance-led", "以合规为基础")}</strong>
-            <span>{t(lang, "Practical systems, records and follow-up", "规范流程、记录与跟进")}</span>
-          </div>
-        </div>
-      </section>
 
-      <section className="section">
+      <section className="section home-links-section">
         <div className="container">
           <SectionHeading
             eyebrow={t(lang, "Choose your path", "按您的需求进入")}
@@ -222,78 +205,6 @@ export function HomeView({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      <section className="section section-muted">
-        <div className="container">
-          <SectionHeading
-            eyebrow={t(lang, "Our approach", "我们的管理方式")}
-            title={t(lang, "Four clear stages. Consistent follow-through.", "四个清晰阶段，持续落实管理。")}
-          />
-          <div className="process-grid">
-            {servicePillars.map((item) => (
-              <article key={item.number}>
-                <span>{item.number}</span>
-                <h3>{item.title[lang]}</h3>
-                <p>{item.body[lang]}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container split-layout">
-          <div>
-            <SectionHeading
-              eyebrow={t(lang, "Compliance made practical", "让合规更容易执行")}
-              title={t(
-                lang,
-                "Healthy Homes, tenancy law and safety should be managed — not guessed.",
-                "健康家园、租赁法规与居住安全，都应被系统管理，而不是靠猜。",
-              )}
-              body={t(
-                lang,
-                "Gramax helps owners keep the right records, identify issues early and coordinate approved work when it is needed.",
-                "Gramax 协助房东保留必要记录、尽早识别问题，并在需要时协调合格承包商。",
-              )}
-            />
-            <ArrowLink href={path(lang, "/resources")}>
-              {t(lang, "View compliance guides", "查看合规指南")}
-            </ArrowLink>
-          </div>
-          <div className="quiet-list">
-            {[
-              [t(lang, "Healthy Homes", "健康家园标准"), t(lang, "Heating, insulation, ventilation, moisture and draughts.", "供暖、保温、通风、防潮与防风。")],
-              [t(lang, "Routine inspections", "例行检查"), t(lang, "Written notice, documented condition and early issue reporting.", "书面通知、物业状况记录及问题早期申报。")],
-              [t(lang, "Smoke alarms", "烟雾报警器"), t(lang, "Clear responsibilities for owners and tenants.", "明确房东与租客的责任。")],
-            ].map(([title, body]) => (
-              <div key={title}>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section founder-band">
-        <div className="container founder-grid">
-          <div className="founder-mark" aria-hidden="true">GL</div>
-          <div>
-            <p className="eyebrow">{t(lang, "Experienced leadership", "专业经验与责任")}</p>
-            <blockquote>
-              {t(
-                lang,
-                "“An investment property is often one of a landlord’s most valuable assets. Management should protect it, reduce risk and support long-term outcomes.”",
-                "“投资物业往往是房东最重要的资产之一。物业管理应当保护资产、降低风险，并支持长期回报。”",
-              )}
-            </blockquote>
-            <p className="founder-name">Grace Luo · {t(lang, "Founder & Managing Director", "创始人兼负责人")}</p>
-            <ArrowLink href={path(lang, "/about")}>
-              {t(lang, "Meet the leadership", "了解创始人")}
-            </ArrowLink>
-          </div>
-        </div>
-      </section>
 
       <section className="final-cta">
         <div className="container final-cta-inner">
