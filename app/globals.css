@@ -690,6 +690,97 @@ h3 {
   margin-top: 30px;
 }
 
+.service-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.service-page-grid > a {
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 32px;
+}
+
+.service-page-grid > a > span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.service-page-grid h2 {
+  margin: 46px 0 14px;
+  font-size: 30px;
+  font-weight: 560;
+  line-height: 1.08;
+}
+
+.service-page-grid p {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.service-page-grid strong {
+  margin-top: auto;
+  color: var(--blue-dark);
+  font-size: 13px;
+}
+
+.service-page-grid > a:hover,
+.service-page-grid > a:focus-visible {
+  background: var(--soft);
+}
+
+.service-detail-layout {
+  display: grid;
+  align-items: start;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.25fr);
+  gap: 9vw;
+}
+
+.service-detail-list {
+  border-top: 1px solid var(--line);
+}
+
+.service-detail-list article {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.service-detail-list article > span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 720;
+  letter-spacing: 0.1em;
+}
+
+.service-detail-list h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 560;
+}
+
+.service-detail-list p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.service-detail-footer {
+  background: var(--soft);
+}
+
 .listings-section {
   padding-bottom: 76px;
 }
@@ -1383,9 +1474,14 @@ h3 {
   .split-layout,
   .form-layout,
   .founder-grid,
-  .founder-profile {
+  .founder-profile,
+  .service-detail-layout {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+
+  .service-page-grid {
+    grid-template-columns: 1fr;
   }
 
   .founder-mark,

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { renderView } from "../../_components/PageViews";
+import { ServiceDetailView } from "../../_components/ServicePages";
+import {
+  getServicePage,
+  type ServiceGroup,
+} from "../../_data/servicePages";
 
 const titles: Record<string, string> = {
   home: "贵鑫物业管理",
@@ -20,8 +25,21 @@ type Props = {
   params: Promise<{ slug?: string[] }>;
 };
 
+function isServiceGroup(value: string): value is ServiceGroup {
+  return ["landlords", "tenants", "commercial"].includes(value);
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (slug?.length === 2 && isServiceGroup(slug[0])) {
+    const servicePage = getServicePage(slug[0], slug[1]);
+    if (servicePage) {
+      return {
+        title: servicePage.title.zh,
+        description: servicePage.summary.zh,
+      };
+    }
+  }
   const key = slug?.[0] ?? "home";
   return {
     title: titles[key] ?? titles.home,
@@ -31,6 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
+  if (slug?.length === 2 && isServiceGroup(slug[0])) {
+    if (!getServicePage(slug[0], slug[1])) {
+      notFound();
+    }
+    return (
+      <ServiceDetailView lang="zh" group={slug[0]} slug={slug[1]} />
+    );
+  }
   if (slug && slug.length > 1) {
     notFound();
   }

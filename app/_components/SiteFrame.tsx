@@ -11,10 +11,10 @@ const nav = [
     zh: "房东服务",
     children: [
       { path: "/landlords", en: "Owner overview", zh: "房东服务概览" },
-      { path: "/landlords#management", en: "Complete management", zh: "完整物业管理" },
-      { path: "/landlords#compliance-guides", en: "Healthy Homes & compliance", zh: "健康家园与合规" },
-      { path: "/landlords#inspections-maintenance", en: "Inspections & maintenance", zh: "巡检与维修" },
-      { path: "/landlords#insurance", en: "Insurance & records", zh: "保险与记录" },
+      { path: "/landlords/management", en: "Complete management", zh: "完整物业管理" },
+      { path: "/landlords/compliance", en: "Healthy Homes & compliance", zh: "健康家园与合规" },
+      { path: "/landlords/inspections-maintenance", en: "Inspections & maintenance", zh: "巡检与维修" },
+      { path: "/landlords/insurance", en: "Insurance & records", zh: "保险与记录" },
       { path: "/appraisal", en: "Free rental appraisal", zh: "免费租金评估" },
     ],
   },
@@ -24,11 +24,11 @@ const nav = [
     zh: "租客服务",
     children: [
       { path: "/tenants", en: "Tenant overview", zh: "租客服务概览" },
-      { path: "/tenants#rent-with-gramax", en: "Renting with Gramax", zh: "选择 Gramax 房源" },
-      { path: "/tenants#maintenance", en: "Maintenance requests", zh: "维修申报" },
-      { path: "/tenants#tenancy-types", en: "Tenancy types & ending", zh: "租约类型与终止" },
-      { path: "/tenants#inspections", en: "Routine inspections", zh: "例行物业检查" },
-      { path: "/tenants#smoke-alarms", en: "Smoke alarm safety", zh: "烟雾报警器安全" },
+      { path: "/tenants/renting", en: "Renting with Gramax", zh: "选择 Gramax 房源" },
+      { path: "/tenants/maintenance", en: "Maintenance requests", zh: "维修申报" },
+      { path: "/tenants/tenancy-types", en: "Tenancy types & ending", zh: "租约类型与终止" },
+      { path: "/tenants/inspections", en: "Routine inspections", zh: "例行物业检查" },
+      { path: "/tenants/smoke-alarms", en: "Smoke alarm safety", zh: "烟雾报警器安全" },
     ],
   },
   {
@@ -37,12 +37,12 @@ const nav = [
     zh: "商业物业",
     children: [
       { path: "/commercial", en: "Commercial overview", zh: "商业服务概览" },
-      { path: "/commercial#lease-management", en: "Lease management", zh: "租约管理" },
-      { path: "/commercial#financial-management", en: "Financial management", zh: "财务管理" },
-      { path: "/commercial#property-operations", en: "Property operations", zh: "物业运营" },
-      { path: "/commercial#commercial-compliance", en: "Compliance", zh: "合规管理" },
-      { path: "/commercial#tenant-management", en: "Tenant management", zh: "租客管理" },
-      { path: "/commercial#asset-advisory", en: "Asset advisory", zh: "资产管理建议" },
+      { path: "/commercial/lease-management", en: "Lease management", zh: "租约管理" },
+      { path: "/commercial/financial-management", en: "Financial management", zh: "财务管理" },
+      { path: "/commercial/property-operations", en: "Property operations", zh: "物业运营" },
+      { path: "/commercial/compliance", en: "Compliance", zh: "合规管理" },
+      { path: "/commercial/tenant-management", en: "Tenant management", zh: "租客管理" },
+      { path: "/commercial/asset-advisory", en: "Asset advisory", zh: "资产管理建议" },
     ],
   },
 ] as const;
@@ -96,7 +96,12 @@ export function SiteFrame({
             {nav.map((item) =>
               "children" in item ? (
                 <div
-                  className={`nav-group${currentPath === item.path ? " active" : ""}`}
+                  className={`nav-group${
+                    currentPath === item.path ||
+                    currentPath.startsWith(`${item.path}/`)
+                      ? " active"
+                      : ""
+                  }`}
                   key={item.path}
                 >
                   <Link className="nav-parent" href={localized(item.path, lang)}>
