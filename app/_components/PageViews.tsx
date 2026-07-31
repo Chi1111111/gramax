@@ -26,21 +26,12 @@ export function HomeView({ lang }: { lang: Language }) {
     <SiteFrame lang={lang} currentPath="/">
       <section className="hero brand-hero">
         <div className="container brand-hero-shell">
-          <Image
-            className="brand-hero-logo"
-            src={
-              lang === "zh"
-                ? "/brand/gramax-logo-zh.png"
-                : "/brand/gramax-logo-en.png"
-            }
-            alt={t(lang, "Gramax Property Management", "Gramax 贵鑫物业管理")}
-            width={568}
-            height={406}
-            priority
-          />
           <div className="brand-hero-roof" aria-hidden="true">
             <span />
           </div>
+          <p className="brand-hero-name">
+            {t(lang, "Gramax Property Management", "Gramax 贵鑫物业管理")}
+          </p>
           <h1>
             {t(
               lang,
@@ -48,9 +39,6 @@ export function HomeView({ lang }: { lang: Language }) {
               "专业物业管理。清晰、合规、可靠。",
             )}
           </h1>
-          <p className="brand-hero-name">
-            {t(lang, "Gramax Property Management", "Gramax 贵鑫物业管理")}
-          </p>
           <p className="brand-hero-lead">
             {t(
               lang,
