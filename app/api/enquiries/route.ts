@@ -1,12 +1,11 @@
-import { ensureEnquiriesSchema, getDb } from "../../../db";
-import { enquiries } from "../../../db/schema";
-
 const allowedKinds = new Set([
   "contact",
   "appraisal",
   "maintenance",
   "rental-alert",
 ]);
+
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
@@ -40,6 +39,47 @@ export async function POST(request: Request) {
       ),
     );
 
+    if (process.env.VERCEL === "1") {
+      const forwardUrl = process.env.ENQUIRY_FORWARD_URL;
+      const forwardToken = process.env.ENQUIRY_FORWARD_TOKEN;
+
+      if (!forwardUrl || !forwardToken) {
+        return Response.json(
+          { ok: false, error: "Enquiry service is not configured" },
+          { status: 503 },
+        );
+      }
+
+      const destination = new URL(forwardUrl);
+      if (destination.origin === new URL(request.url).origin) {
+        throw new Error("Enquiry forwarding cannot target the current origin");
+      }
+
+      const forwarded = await fetch(destination, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${forwardToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        cache: "no-store",
+        signal: AbortSignal.timeout(10_000),
+      });
+      const result = (await forwarded.json().catch(() => null)) as
+        | Record<string, unknown>
+        | null;
+
+      if (!forwarded.ok || !result) {
+        throw new Error("Upstream enquiry service rejected the request");
+      }
+
+      return Response.json(result, { status: forwarded.status });
+    }
+
+    const [{ ensureEnquiriesSchema, getDb }, { enquiries }] = await Promise.all([
+      import("../../../db"),
+      import("../../../db/schema"),
+    ]);
     const id = crypto.randomUUID();
     await ensureEnquiriesSchema();
     await getDb().insert(enquiries).values({
