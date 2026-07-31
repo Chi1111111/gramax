@@ -4,6 +4,7 @@ import type { Language } from "../_data/content";
 import { MotionEffects } from "./MotionEffects";
 
 const nav = [
+  { path: "/", en: "Home", zh: "首页" },
   { path: "/rentals", en: "Rentals", zh: "可租房源" },
   { path: "/team", en: "Our Team", zh: "团队介绍" },
   {
