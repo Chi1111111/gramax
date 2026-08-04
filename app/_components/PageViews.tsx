@@ -42,8 +42,8 @@ export function HomeView({ lang }: { lang: Language }) {
           <p className="brand-hero-lead">
             {t(
               lang,
-              "Personal, practical property management for Auckland owners and tenants.",
-              "为奥克兰房东与租客提供务实、细致的物业管理服务。",
+              "Personal, practical property management across Greater Auckland and Hamilton.",
+              "为大奥克兰及汉密尔顿提供务实、细致的物业管理服务。",
             )}
           </p>
           <div className="button-row">
@@ -60,53 +60,84 @@ export function HomeView({ lang }: { lang: Language }) {
       <section className="section home-links-section">
         <div className="container">
           <SectionHeading
-            eyebrow={t(lang, "Essential pages", "核心入口")}
-            title={t(lang, "Start where you need.", "从您需要的页面开始。")}
+            eyebrow={t(lang, "Greater Auckland & Hamilton", "大奥克兰及汉密尔顿")}
+            title={t(lang, "Our services.", "我们的服务。")}
+            body={t(
+              lang,
+              "Practical property management for residential, commercial, residents’ society, build-to-rent and community housing portfolios.",
+              "为住宅、商业、住户社团、长租开发及社区住房项目提供务实的物业管理支持。",
+            )}
           />
-          <div className="audience-grid">
+          <div className="audience-grid services-grid">
             <article className="audience-card audience-card-dark">
               <span className="card-index">01</span>
-              <h3>{t(lang, "Current rentals", "当前房源")}</h3>
+              <h3>{t(lang, "Residential management", "住宅物业管理")}</h3>
               <p>
                 {t(
                   lang,
-                  "Browse Gramax-managed residential rentals and commercial spaces.",
-                  "查看由 Gramax 管理的住宅出租及商业物业。",
+                  "End-to-end letting, tenant selection, rent, inspections, maintenance and compliance.",
+                  "涵盖招租、租客筛选、收租、巡检、维修及合规管理的全流程服务。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/rentals")}>
-                {t(lang, "View properties", "查看房源")}
+              <ArrowLink href={path(lang, "/landlords")}>
+                {t(lang, "Residential services", "查看住宅服务")}
               </ArrowLink>
             </article>
             <article className="audience-card">
               <span className="card-index">02</span>
-              <h3>{t(lang, "Our team", "团队介绍")}</h3>
+              <h3>{t(lang, "Commercial management", "商业物业管理")}</h3>
               <p>
                 {t(
                   lang,
-                  "Meet the people responsible for the care, communication and follow-through.",
-                  "了解负责物业维护、沟通与持续跟进的 Gramax 团队。",
+                  "Lease, financial, tenant, compliance and day-to-day property operations management.",
+                  "提供租约、财务、租户、合规及日常物业运营管理。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/team")}>
-                {t(lang, "Meet Gramax", "认识 Gramax")}
+              <ArrowLink href={path(lang, "/commercial")}>
+                {t(lang, "Commercial services", "查看商业服务")}
               </ArrowLink>
             </article>
             <article className="audience-card">
               <span className="card-index">03</span>
-              <h3>{t(lang, "For property owners", "房东服务")}</h3>
+              <h3>{t(lang, "Residents’ society management", "住户社团管理")}</h3>
               <p>
                 {t(
                   lang,
-                  "Letting, tenant selection, rent, inspections, maintenance and compliance.",
-                  "招租、租客筛选、收租、巡检、维修及合规管理。",
+                  "Clear administration, shared-property coordination, contractor oversight and resident communication.",
+                  "提供清晰的行政管理、公共区域协调、承包商监督及住户沟通。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/landlords")}>
-                {t(lang, "Explore owner services", "查看房东服务")}
+              <ArrowLink href={path(lang, "/contact")}>
+                {t(lang, "Discuss your society", "咨询社团管理")}
+              </ArrowLink>
+            </article>
+            <article className="audience-card">
+              <span className="card-index">04</span>
+              <h3>{t(lang, "Build-to-rent & community housing", "长租开发与社区住房")}</h3>
+              <p>
+                {t(
+                  lang,
+                  "Scalable support for build-to-rent portfolios and Community Housing Providers (CHPs), including programmes of 300 homes or more.",
+                  "为长租开发及社区住房提供商（CHP）提供可扩展的管理支持，包括 300 套及以上的大型项目。",
+                )}
+              </p>
+              <ArrowLink href={path(lang, "/contact")}>
+                {t(lang, "Discuss a large-scale project", "咨询大型项目")}
               </ArrowLink>
             </article>
           </div>
+          <a
+            className="service-reference-link"
+            href="https://www.chra.hud.govt.nz/about-chra/what-is-community-housing/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t(
+              lang,
+              "About Community Housing Providers (CHPs) — CHRA ↗",
+              "了解社区住房提供商（CHP）— CHRA ↗",
+            )}
+          </a>
         </div>
       </section>
 

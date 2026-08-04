@@ -223,7 +223,7 @@ export function SiteFrame({
           </div>
           <div>
             <p className="footer-label">{isZh ? "联系" : "Contact"}</p>
-            <a href="tel:+64212468868">021 246 8868</a>
+            <a href="tel:+64226268868">022 626 8868</a>
             <a href="mailto:info@gramaxproperty.co.nz">
               info@gramaxproperty.co.nz
             </a>

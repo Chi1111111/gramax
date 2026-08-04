@@ -702,6 +702,27 @@ h3 {
   line-height: 1.6;
 }
 
+.services-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.home-links-section .services-grid .audience-card {
+  min-height: 320px;
+}
+
+.service-reference-link {
+  display: inline-flex;
+  margin-top: 24px;
+  color: var(--blue-dark);
+  font-size: 13px;
+  font-weight: 650;
+  transition: color 180ms ease;
+}
+
+.service-reference-link:hover {
+  color: var(--blue);
+}
+
 .owner-guide-section {
   background: var(--soft);
 }
@@ -1495,6 +1516,10 @@ h3 {
   }
 
   .service-grid-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
