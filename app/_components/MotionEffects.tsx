@@ -10,9 +10,9 @@ const revealSelector = [
   ".brand-hero-shell > .brand-hero-name",
   ".brand-hero-shell > .brand-hero-lead",
   ".brand-hero-shell > .button-row",
-  ".page-intro .container > *",
+  ".page-intro .eyebrow",
+  ".page-intro-grid > *",
   ".section-heading > *",
-  ".audience-grid > *",
   ".guide-grid > *",
   ".service-page-grid > *",
   ".service-detail-list > *",
@@ -62,7 +62,7 @@ export function MotionEffects() {
         target.classList.add("motion-reveal");
         target.style.setProperty(
           "--motion-delay",
-          `${Math.min(position, 4) * 55}ms`,
+          `${Math.min(position, 4) * 35}ms`,
         );
 
         if (parent) {

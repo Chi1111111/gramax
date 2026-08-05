@@ -255,10 +255,12 @@ export function PageIntro({
 }) {
   return (
     <section className="page-intro">
-      <div className="container narrow">
+      <div className="container">
         <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p className="intro-copy">{body}</p>
+        <div className="page-intro-grid">
+          <h1>{title}</h1>
+          <p className="intro-copy">{body}</p>
+        </div>
       </div>
     </section>
   );

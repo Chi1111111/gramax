@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-NZ">
+    <html lang="en-NZ" data-scroll-behavior="smooth">
       <body className={geist.variable}>{children}</body>
     </html>
   );

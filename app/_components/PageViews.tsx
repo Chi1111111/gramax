@@ -3,7 +3,6 @@ import Link from "next/link";
 import { InquiryForm } from "./InquiryForm";
 import { ServiceOverviewView } from "./ServicePages";
 import {
-  ArrowLink,
   PageIntro,
   SectionHeading,
   SiteFrame,
@@ -20,6 +19,155 @@ function t(lang: Language, en: string, zh: string) {
 function path(lang: Language, value: string) {
   return lang === "zh" ? `/zh${value === "/" ? "" : value}` : value;
 }
+
+type TeamMember = {
+  name: string;
+  roleEn: string;
+  roleZh: string;
+  hideRole?: boolean;
+  categoryEn: string;
+  categoryZh: string;
+  bioEn: string;
+  bioZh: string;
+  photo: string;
+  photoAltEn: string;
+  photoAltZh: string;
+  photoWidth: number;
+  photoHeight: number;
+  photoClassName?: string;
+};
+
+const TEAM_MEMBERS: readonly (TeamMember | null)[] = [
+  {
+    name: "Grace Luo",
+    roleEn: "Founder & Managing Director",
+    roleZh: "创始人兼董事总经理",
+    categoryEn: "Leadership",
+    categoryZh: "管理团队",
+    bioEn:
+      "Grace founded Gramax to give property owners clear, practical and reliable management. With extensive residential property experience and ongoing Bachelor of Laws studies, she brings informed advice, proactive oversight and a long-term view to every tenancy.",
+    bioZh:
+      "Grace 创立 Gramax，致力于为业主提供清晰、务实且可靠的物业管理服务。凭借丰富的住宅物业管理经验及正在攻读的法学学士课程，她以专业建议、主动管理和长期视角认真对待每一段租赁关系。",
+    photo: "/team/grace-luo-clean.png",
+    photoAltEn: "Portrait of Grace Luo",
+    photoAltZh: "Grace Luo 肖像照",
+    photoWidth: 1086,
+    photoHeight: 1448,
+  },
+  {
+    name: "Kevin Jiao",
+    roleEn: "Property Manager",
+    roleZh: "物业经理",
+    categoryEn: "Residential",
+    categoryZh: "住宅物业",
+    bioEn:
+      "Kevin is a University of Auckland graduate in Accounting and Taxation. Based in East Auckland, he brings clear communication, careful organisation and a practical approach to inspections, maintenance and everyday tenancy matters. He is fluent in English, Mandarin and Cantonese.",
+    bioZh:
+      "Kevin 毕业于奥克兰大学会计与税务专业，现常驻奥克兰东区。他以清晰沟通、细致执行和务实方式处理检查、维修及日常租务，并精通英语、普通话和粤语。",
+    photo: "/team/kevin-jiao-clean.png",
+    photoAltEn: "Portrait of Kevin Jiao",
+    photoAltZh: "Kevin Jiao 肖像照",
+    photoWidth: 1254,
+    photoHeight: 1254,
+  },
+  {
+    name: "Leo Han",
+    roleEn: "Property Manager",
+    roleZh: "物业经理",
+    categoryEn: "Residential",
+    categoryZh: "住宅物业",
+    bioEn:
+      "Leo graduated from Massey University and AUT in Marketing and Business. He takes a proactive, detail-focused approach to maintenance, inspections and everyday tenancy matters. Fluent in English and Mandarin, he values clear communication and lasting relationships with landlords and tenants.",
+    bioZh:
+      "Leo 毕业于梅西大学及奥克兰理工大学，拥有市场营销与商业背景。他以主动、细致的方式处理维修、检查及日常租务，并通过英语和普通话与房东及租客保持清晰沟通。",
+    photo: "/team/leo-han.jpg",
+    photoAltEn: "Portrait of Leo Han",
+    photoAltZh: "Leo Han 肖像照",
+    photoWidth: 1280,
+    photoHeight: 1280,
+  },
+  {
+    name: "Cindy",
+    roleEn: "Property Manager",
+    roleZh: "物业经理",
+    categoryEn: "Commercial & Residential Society",
+    categoryZh: "商业及住宅社区",
+    bioEn:
+      "Cindy holds a Master's degree from Lincoln University and has several years of property management experience. She manages commercial offices and retail spaces, along with Residential Society properties on Auckland's North Shore, combining practical problem-solving with responsive, hands-on service.",
+    bioZh:
+      "Cindy 拥有林肯大学硕士学位及多年物业管理经验。她负责商业办公楼、零售空间及奥克兰北岸的 Residential Society 物业，以务实的问题解决能力提供及时、细致的服务。",
+    photo: "/team/cindy.jpg",
+    photoAltEn: "Portrait of Cindy",
+    photoAltZh: "Cindy 肖像照",
+    photoWidth: 1600,
+    photoHeight: 1600,
+  },
+  {
+    name: "Tao",
+    roleEn: "Property Manager",
+    roleZh: "物业经理",
+    categoryEn: "Residential",
+    categoryZh: "住宅物业",
+    bioEn:
+      "A University of Auckland graduate, Tao has extensive experience managing residential properties across Auckland. He coordinates tenancies, inspections, maintenance and compliance with an organised, practical approach. Fluent in English and Mandarin, he is committed to reliable, responsive service.",
+    bioZh:
+      "Tao 毕业于奥克兰大学，拥有丰富的奥克兰住宅物业管理经验。他以有条理、务实的方式协调租务、检查、维修及合规工作，并以英语和普通话提供及时可靠的服务。",
+    photo: "/team/tao.png",
+    photoAltEn: "Portrait of Tao",
+    photoAltZh: "Tao 肖像照",
+    photoWidth: 1254,
+    photoHeight: 1254,
+  },
+  {
+    name: "Cera",
+    roleEn: "Office Administrator",
+    roleZh: "办公室行政主管",
+    categoryEn: "Operations",
+    categoryZh: "运营支持",
+    bioEn:
+      "Cera holds a New Zealand Bachelor of International Business and has more than ten years of experience in office administration and project support. She coordinates teams, clients and stakeholders with strong organisation, time management and accountability.",
+    bioZh:
+      "Cera 在新西兰取得国际商务学士学位，并拥有十余年办公室行政及项目支持经验。她以出色的组织、时间管理和责任意识协调团队、客户及相关方。",
+    photo: "/team/cera-clean.png",
+    photoAltEn: "Portrait of Cera",
+    photoAltZh: "Cera 肖像照",
+    photoWidth: 1254,
+    photoHeight: 1254,
+  },
+  {
+    name: "Shawn",
+    roleEn: "Assistant Property Manager",
+    roleZh: "助理物业经理",
+    categoryEn: "Property Support",
+    categoryZh: "物业支持",
+    bioEn:
+      "Shawn holds a New Zealand Bachelor of Communication and brings strong communication, organisation and administration skills to the team. He supports property inspections, tenant communication, maintenance coordination and daily administration to keep property matters moving smoothly.",
+    bioZh:
+      "Shawn 在新西兰取得传播学学士学位，具备良好的沟通、组织及行政能力。他协助处理物业检查、租客沟通、维修协调和日常行政事务，确保管理工作顺畅推进。",
+    photo: "/team/shawn.png",
+    photoAltEn: "Portrait of Shawn",
+    photoAltZh: "Shawn 肖像照",
+    photoWidth: 1254,
+    photoHeight: 1254,
+  },
+  {
+    name: "Office Admin",
+    roleEn: "Office Admin",
+    roleZh: "办公室行政",
+    hideRole: true,
+    categoryEn: "Administration",
+    categoryZh: "行政支持",
+    bioEn:
+      "Holding a Master's degree in Chemistry, he brings an analytical and methodical mindset to Gramax's daily administration. He approaches every task with care, reliability and a strong sense of responsibility, supporting accurate records, clear coordination and efficient office operations.",
+    bioZh:
+      "他拥有化学硕士学位，将严谨的分析思维和有条理的工作方式带入 Gramax 的日常行政工作。他认真对待每一项任务，注重准确记录、清晰协调与高效执行，并以强烈的责任心为团队提供可靠支持。",
+    photo: "/team/office-admin-clean.png",
+    photoAltEn: "Portrait of the Gramax Office Admin",
+    photoAltZh: "Gramax 办公室行政人员肖像照",
+    photoWidth: 1086,
+    photoHeight: 1448,
+  },
+];
 
 export function HomeView({ lang }: { lang: Language }) {
   return (
@@ -57,21 +205,24 @@ export function HomeView({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      <section className="section home-links-section">
+      <section className="section home-links-section" id="our-services">
         <div className="container">
           <SectionHeading
             eyebrow={t(lang, "Greater Auckland & Hamilton", "大奥克兰及汉密尔顿")}
             title={t(lang, "Our services.", "我们的服务。")}
             body={t(
               lang,
-              "Practical property management for residential, commercial, residents’ society, build-to-rent and community housing portfolios.",
+              "Practical property management for residential, commercial, residential society, build-to-rent and community housing portfolios.",
               "为住宅、商业、住户社团、长租开发及社区住房项目提供务实的物业管理支持。",
             )}
           />
           <div className="audience-grid services-grid">
-            <article className="audience-card audience-card-dark">
+            <Link
+              className="audience-card"
+              href={path(lang, "/services/residential-management")}
+            >
               <span className="card-index">01</span>
-              <h3>{t(lang, "Residential management", "住宅物业管理")}</h3>
+              <h3>{t(lang, "Residential Management", "住宅物业管理")}</h3>
               <p>
                 {t(
                   lang,
@@ -79,13 +230,17 @@ export function HomeView({ lang }: { lang: Language }) {
                   "涵盖招租、租客筛选、收租、巡检、维修及合规管理的全流程服务。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/landlords")}>
-                {t(lang, "Residential services", "查看住宅服务")}
-              </ArrowLink>
-            </article>
-            <article className="audience-card">
+              <span className="arrow-link">
+                {t(lang, "View residential services", "查看住宅服务")}
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+            <Link
+              className="audience-card"
+              href={path(lang, "/services/commercial-management")}
+            >
               <span className="card-index">02</span>
-              <h3>{t(lang, "Commercial management", "商业物业管理")}</h3>
+              <h3>{t(lang, "Commercial Management", "商业物业管理")}</h3>
               <p>
                 {t(
                   lang,
@@ -93,13 +248,17 @@ export function HomeView({ lang }: { lang: Language }) {
                   "提供租约、财务、租户、合规及日常物业运营管理。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/commercial")}>
-                {t(lang, "Commercial services", "查看商业服务")}
-              </ArrowLink>
-            </article>
-            <article className="audience-card">
+              <span className="arrow-link">
+                {t(lang, "View commercial services", "查看商业服务")}
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+            <Link
+              className="audience-card"
+              href={path(lang, "/services/residents-society-management")}
+            >
               <span className="card-index">03</span>
-              <h3>{t(lang, "Residents’ society management", "住户社团管理")}</h3>
+              <h3>{t(lang, "Residential Society", "住户社团管理")}</h3>
               <p>
                 {t(
                   lang,
@@ -107,13 +266,17 @@ export function HomeView({ lang }: { lang: Language }) {
                   "提供清晰的行政管理、公共区域协调、承包商监督及住户沟通。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/contact")}>
-                {t(lang, "Discuss your society", "咨询社团管理")}
-              </ArrowLink>
-            </article>
-            <article className="audience-card">
+              <span className="arrow-link">
+                {t(lang, "View society services", "查看社团服务")}
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+            <Link
+              className="audience-card"
+              href={path(lang, "/services/build-to-rent-community-housing")}
+            >
               <span className="card-index">04</span>
-              <h3>{t(lang, "Build-to-rent & community housing", "长租开发与社区住房")}</h3>
+              <h3>{t(lang, "Build-to-Rent & Community Housing", "长租开发与社区住房")}</h3>
               <p>
                 {t(
                   lang,
@@ -121,10 +284,11 @@ export function HomeView({ lang }: { lang: Language }) {
                   "为长租开发及社区住房提供商（CHP）提供可扩展的管理支持，包括 300 套及以上的大型项目。",
                 )}
               </p>
-              <ArrowLink href={path(lang, "/contact")}>
-                {t(lang, "Discuss a large-scale project", "咨询大型项目")}
-              </ArrowLink>
-            </article>
+              <span className="arrow-link">
+                {t(lang, "View large-scale services", "查看大型项目服务")}
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
           </div>
           <a
             className="service-reference-link"
@@ -315,40 +479,86 @@ export function TeamView({ lang }: { lang: Language }) {
         title={t(lang, "Meet the people behind Gramax.", "认识 Gramax 背后的团队。")}
         body={t(
           lang,
-          "Led by founder and managing director Grace Luo, the Gramax team combines practical property management experience with clear communication, compliance and personal accountability.",
-          "Gramax 团队由创始人兼负责人 Grace Luo 带领，将实际物业管理经验、清晰沟通、合规意识与责任落实相结合。",
+          "Meet the eight people responsible for practical property care, clear communication, compliance and dependable follow-through.",
+          "认识 Gramax 的八位团队成员，他们共同负责务实的物业管理、清晰沟通、合规执行与可靠跟进。",
         )}
       />
-      <section className="section">
-        <div className="container founder-profile">
-          <div className="founder-mark founder-mark-large" aria-hidden="true">GL</div>
-          <div>
-            <p className="eyebrow">{t(lang, "Founder & Managing Director", "创始人兼负责人")}</p>
-            <h2>Grace Luo</h2>
-            <p>
-              {t(
-                lang,
-                "Grace has extensive experience in residential property management and is committed to helping owners protect their investments through professional advice, proactive management and dependable service.",
-                "Grace 拥有丰富的住宅物业管理经验，致力于通过专业建议、主动管理及可靠服务协助房东保护投资。",
-              )}
-            </p>
-            <p>
-              {t(
-                lang,
-                "Alongside her property management career, Grace is completing a Bachelor of Laws. Her legal study strengthens her understanding of New Zealand tenancy law, contract law, regulatory compliance and dispute resolution.",
-                "在物业管理实践之外，Grace 正在攻读法学学士。法律学习进一步加强了她对新西兰租赁法、合同法、法规合规及纠纷解决的理解。",
-              )}
-            </p>
-            <p>
-              {t(
-                lang,
-                "Her approach is built on simple principles: choose the right tenants, protect the property, communicate clearly, reduce risk and remain accountable.",
-                "她的管理原则很清晰：选择合适的租客、保护物业、清晰沟通、降低风险并承担责任。",
-              )}
-            </p>
-            <ArrowLink href={`${path(lang, "/resources")}#grace-luo`}>
-              {t(lang, "View the original leadership profile", "查看原始人物介绍")}
-            </ArrowLink>
+      <section className="section team-directory-section">
+        <div className="container">
+          <div className="team-directory-header">
+            <p className="eyebrow">{t(lang, "Our people", "我们的团队")}</p>
+          </div>
+          <div className="team-grid">
+            {TEAM_MEMBERS.map((member, index) => {
+              const slot = index + 1;
+
+              return (
+                <article
+                  className={`team-card${member ? " team-card-populated" : ""}`}
+                  key={member?.name ?? slot}
+                  aria-label={
+                    member
+                      ? member.hideRole
+                        ? member.name
+                        : `${member.name}, ${t(lang, member.roleEn, member.roleZh)}`
+                      : t(
+                          lang,
+                          `Team member position ${slot}`,
+                          `团队成员位置 ${slot}`,
+                        )
+                  }
+                >
+                  <span className="team-card-index" aria-hidden="true">
+                    {String(slot).padStart(2, "0")}
+                  </span>
+                  <div
+                    className={`team-photo-placeholder${member ? " team-photo-filled" : ""}`}
+                    aria-hidden={member ? undefined : true}
+                  >
+                    {member ? (
+                      <Image
+                        className={member.photoClassName ?? "team-profile-photo"}
+                        src={member.photo}
+                        alt={t(lang, member.photoAltEn, member.photoAltZh)}
+                        width={member.photoWidth}
+                        height={member.photoHeight}
+                      />
+                    ) : null}
+                  </div>
+                  <div
+                    className={`team-card-content${member ? " team-card-content-filled" : ""}`}
+                    aria-hidden={member ? undefined : true}
+                  >
+                    {member ? (
+                      <>
+                        <p className="team-member-overline">
+                          {t(lang, member.categoryEn, member.categoryZh)}
+                        </p>
+                        <h2>{member.name}</h2>
+                        {!member.hideRole ? (
+                          <p className="team-member-role">
+                            {t(lang, member.roleEn, member.roleZh)}
+                          </p>
+                        ) : null}
+                        <p className="team-member-bio">
+                          {t(lang, member.bioEn, member.bioZh)}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <span className="team-name-rule" />
+                        <span className="team-role-rule" />
+                        <div className="team-bio-rules">
+                          <span />
+                          <span />
+                          <span />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
