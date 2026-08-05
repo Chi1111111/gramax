@@ -151,10 +151,9 @@ const TEAM_MEMBERS: readonly (TeamMember | null)[] = [
     photoHeight: 1254,
   },
   {
-    name: "Office Admin",
+    name: "Max",
     roleEn: "Office Admin",
     roleZh: "办公室行政",
-    hideRole: true,
     categoryEn: "Administration",
     categoryZh: "行政支持",
     bioEn:
