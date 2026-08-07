@@ -196,17 +196,17 @@ export function SiteFrame({
           </div>
           <div>
             <p className="footer-label">{isZh ? "服务" : "Services"}</p>
-            <Link href={localized("/landlords", lang)}>
-              {isZh ? "住宅物业管理" : "Residential management"}
+            <Link href={localized("/services/residential-management", lang)}>
+              {isZh ? "住宅物业管理" : "Residential Management"}
             </Link>
-            <Link href={localized("/commercial", lang)}>
-              {isZh ? "商业物业管理" : "Commercial management"}
+            <Link href={localized("/services/commercial-management", lang)}>
+              {isZh ? "商业物业管理" : "Commercial Management"}
             </Link>
-            <Link href={localized("/appraisal", lang)}>
-              {isZh ? "租金评估" : "Rental appraisal"}
+            <Link href={localized("/services/residents-society-management", lang)}>
+              {isZh ? "住宅社区管理" : "Residential Society"}
             </Link>
-            <Link href={localized("/rentals", lang)}>
-              {isZh ? "查看可租房源" : "View available properties"}
+            <Link href={localized("/services/build-to-rent-community-housing", lang)}>
+              {isZh ? "长租住宅管理" : "Build-to-Rent"}
             </Link>
           </div>
           <div>
