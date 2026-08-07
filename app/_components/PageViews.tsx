@@ -185,7 +185,7 @@ export function HomeView({ lang }: { lang: Language }) {
           <h1>
             {t(
               lang,
-              "Professional property management. Clear, compliant, dependable.",
+              "Professional Property Management. Clear, Compliant, Reliable.",
               "专业物业管理。清晰、合规、可靠。",
             )}
           </h1>
@@ -497,7 +497,7 @@ export function TeamView({ lang }: { lang: Language }) {
         title={t(lang, "Meet the people behind Gramax.", "认识 Gramax 背后的团队。")}
         body={t(
           lang,
-          "Meet the eight people responsible for practical property care, clear communication, compliance and dependable follow-through.",
+          "Meet the eight people responsible for practical property care, clear communication, compliance and reliable follow-through.",
           "认识 Gramax 的八位团队成员，他们共同负责务实的物业管理、清晰沟通、合规执行与可靠跟进。",
         )}
       />

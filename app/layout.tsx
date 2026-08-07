@@ -32,14 +32,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: "Gramax Property Management",
-      description: "Professional property management. Clear, compliant, dependable.",
+      description: "Professional Property Management. Clear, Compliant, Reliable.",
       type: "website",
       images: [{ url: image, width: 1729, height: 910, alt: "Gramax Property Management" }],
     },
     twitter: {
       card: "summary_large_image",
       title: "Gramax Property Management",
-      description: "Professional property management. Clear, compliant, dependable.",
+      description: "Professional Property Management. Clear, Compliant, Reliable.",
       images: [image],
     },
   };

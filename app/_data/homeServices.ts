@@ -191,7 +191,7 @@ export const homeServicePages = {
       zh: "协助委员会、业主与住户有序管理行政事务、公共区域及沟通。",
     },
     approach: {
-      en: "Neutral coordination, documented decisions and a dependable process for everyday community matters.",
+      en: "Neutral coordination, documented decisions and a reliable process for everyday community matters.",
       zh: "以中立协调、书面决策及可靠流程处理日常社区事务。",
     },
     highlights: [
