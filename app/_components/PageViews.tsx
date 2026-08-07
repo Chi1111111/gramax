@@ -20,6 +20,9 @@ function path(lang: Language, value: string) {
   return lang === "zh" ? `/zh${value === "/" ? "" : value}` : value;
 }
 
+const TRADE_ME_LISTINGS_URL =
+  "https://www.trademe.co.nz/a/property/office/8184652";
+
 type TeamMember = {
   name: string;
   roleEn: string;
@@ -391,22 +394,38 @@ export function RentalsView({ lang }: { lang: Language }) {
         </div>
       </section>
       <section className="section listings-link-section">
-        <div className="container listings-link-panel">
+        <a
+          className="container listings-link-panel"
+          href={TRADE_ME_LISTINGS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t(
+            lang,
+            "View Gramax Property Management listings on Trade Me",
+            "在 Trade Me 查看 Gramax Property Management 当前房源",
+          )}
+        >
           <div>
             <p className="eyebrow">{t(lang, "Current listings", "当前房源")}</p>
-            <h2>{t(lang, "The official listings link will be added here.", "正式房源链接将在这里添加。")}</h2>
+            <h2>
+              {t(
+                lang,
+                "View Gramax properties on Trade Me.",
+                "前往 Trade Me 查看 Gramax 当前房源。",
+              )}
+            </h2>
             <p>
               {t(
                 lang,
-                "The page structure is ready. When the final listing link is confirmed, this area will take visitors directly to the current properties.",
-                "页面结构已经准备完成。确认最终房源链接后，这一区域将直接带访客查看当前房源。",
+                "Browse our latest residential rental listings, viewing details and application information on our official Trade Me profile.",
+                "通过 Gramax 官方 Trade Me 页面查看最新住宅出租房源、看房安排及申请信息。",
               )}
             </p>
           </div>
           <span className="listing-link-status">
-            {t(lang, "Link ready to add", "等待添加链接")}
+            {t(lang, "Open Trade Me ↗", "打开 Trade Me ↗")}
           </span>
-        </div>
+        </a>
       </section>
       <section className="section section-muted">
         <div className="container form-layout">

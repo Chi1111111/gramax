@@ -1112,6 +1112,18 @@ h3 {
   background: var(--ink);
   color: var(--white);
   padding: 48px;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.listings-link-panel:hover {
+  background: #181b1e;
+  transform: translateY(-2px);
+}
+
+.listings-link-panel:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
 }
 
 .listings-link-panel > div {
@@ -1140,6 +1152,12 @@ h3 {
   font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.listings-link-panel:hover .listing-link-status {
+  border-color: #a7ddff;
+  color: #ffffff;
 }
 
 .process-grid {
